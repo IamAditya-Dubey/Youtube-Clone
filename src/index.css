@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", "Arial", sans-serif;
+}
+
+li.active {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.cloud-active {
+  background-color: rgba(0, 0, 0, 1) !important;
+  color: white;
+}
+
+.ContainerWidth{
+  width: calc(100% - 240px );
+  transform: translateX(240px) translateY(60px);
+}
+
+.ContainerWidthCollapsed {
+  width: calc(100% - 85px);
+  transform: translateX(65px) translateY(60px);
+}
+
+@media screen and (max-width: 767px){
+  .ContainerWidth, .ContainerWidthCollapsed{
+    width: 100%;
+    padding: 0 15px;
+    transform: translateY(60px);
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;

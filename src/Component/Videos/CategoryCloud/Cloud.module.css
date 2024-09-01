@@ -1,0 +1,14 @@
+.cloudAllItems {
+  position: relative;
+  scrollbar-width: none;
+}
+
+.cloudMain::after{
+  content: "";
+  position: absolute;
+  top: 16px;
+  right: 0;
+  height: 34px;
+  width: 90px;
+  background: linear-gradient(to right, transparent, white 80%);
+}

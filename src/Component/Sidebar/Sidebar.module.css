@@ -1,0 +1,82 @@
+.asideRight {
+  transform: translateY(60px);
+  position: fixed;
+  max-height: calc(100vh - 20px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  padding: 2px 5px 2px 16px;
+  width: 224px;
+  transition: 0.2s;
+  z-index: 1010;
+  background-color: white;
+  transition: 300ms;
+}
+
+.asideRight:hover {
+  scrollbar-color: rgba(0, 0, 0, 0.322) transparent;
+}
+
+.asideRight li {
+  cursor: pointer;
+}
+
+.menuList {
+  display: flex;
+  padding: 8px 10px;
+  gap: 20px;
+  align-items: center;
+}
+
+.menuList:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.menuIcon {
+  font-size: 22px;
+}
+
+.menuName {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 768px){
+
+  .sideCollapse {
+    padding-left: 10px;
+    width: 65px;
+  }
+
+  .sideCollapse .menuName {
+    display: none;
+  }
+
+  .sideCollapse .titleName {
+    display: none;
+  }
+
+  .sideCollapse .footer {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+
+.asideRight {
+  display: none;
+  min-width: 195px;
+}
+
+.asideOpen{
+  display: block;
+  position: fixed;
+  background-color: white;
+  z-index: 3;
+  margin: 0;
+  padding: 0 10px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+}

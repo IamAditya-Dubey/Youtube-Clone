@@ -1,0 +1,148 @@
+#navigation, .logoArea, .middleArea, .searchBar, .rightArea {
+  display: flex;
+  align-items: center;
+}
+
+#navigation {
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  z-index: 2020;
+  height: 60px;
+  padding: 10px 20px;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+#navigation img {
+  height: 25px;
+}
+
+.logoArea {
+  gap: 25px;
+  min-width: 116px;
+}
+
+.logoArea img {
+  height: 21px !important;
+}
+
+.middleArea {
+  min-width: 60px;
+  margin-left: 50px;
+  margin-right: 12vw;
+  flex: 1 auto;
+  justify-content: space-between;
+}
+
+.rightArea{
+  width: 160px;
+  justify-content: space-between;
+}
+
+.searchBar{
+  flex: 1 auto;
+  box-sizing: border-box;
+  padding: 0 0 0 16px;
+  margin: 0 0 0 10vw;
+  border-radius: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 280px;
+  justify-content: space-between;
+}
+
+.searchBar input {
+  flex: 1 auto;
+  outline: 0;
+  border: none;
+  font-size: 16px;
+  padding: 2px 0;
+}
+
+.searchBar input::placeholder{
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.searchIcon {
+  font-size: 24px;
+  box-sizing: content-box;
+  cursor: pointer;
+}
+
+.micIcon {
+  margin: 0 0 0 5px;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.05);
+  box-sizing: content-box;
+  padding: 8px 8px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.micIcon:hover {
+  background-color: rgba(0, 0, 0, 0.1); 
+}
+
+.menuIcon {
+  color: rgba(0, 0, 0, 0.8);
+  box-sizing: content-box;
+  cursor: pointer;
+}
+
+#navigation img {
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.avatarImg {
+  min-height: 32px !important;
+  min-width: 32px !important;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 767px){
+  #navigation {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .extraIcons {
+  display: none;
+}
+
+.rightArea{
+  justify-content: end;
+  width: auto;
+  padding: 0 0 0 15px;
+}
+
+.middleArea{
+  justify-content: flex-end;
+  margin: 0;
+}
+
+.searchBar{
+  border: none;
+  flex: 0;
+  justify-content: flex-end;
+  padding: 0;
+}
+.searchBar input {
+  display: none;
+}
+
+.searchIcon {
+  padding: 8px;
+}
+
+.micIcon:hover, .searchIcon:hover{
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+}
+
+@media screen and (max-width: 320px) {
+  .micIcon{
+    display: none;
+  }
+}
