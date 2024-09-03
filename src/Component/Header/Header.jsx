@@ -3,6 +3,7 @@ import Upload from "../../assets/upload.png"
 import Explore from "../../assets/explore.png"
 import Notification from "../../assets/notification.png"
 import User1 from "../../assets/sub-1.png"
+import {Link} from "react-router-dom"
 import { CiSearch } from "react-icons/ci";
 import { IoMdMic } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -29,7 +30,7 @@ function Header() {
           }
 
         }}/></div>
-        <a href="/"><img src={Logo} alt="logo" /></a>
+        <Link to="/"><img src={Logo} alt="logo" /></Link>
       </div>
       <div className={`${css.middleArea}`}>
       <div className={`${css.searchBar}`}>

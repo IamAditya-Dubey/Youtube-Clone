@@ -9,7 +9,9 @@ function SingleVideoPage() {
   let {asideCollapse, setAsideCollapse} = useContext(SiteContext);
 
   useEffect(()=> {
-    setAsideCollapse(true)},
+    setAsideCollapse(true)
+    window.scrollTo(0, 0)
+  },
     []
   )
 
