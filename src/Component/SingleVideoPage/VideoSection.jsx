@@ -1,4 +1,3 @@
-import Poster from "../../assets/thumbnai.jpg"
 import ChannelInfo from "./ChannelInfo";
 import VideoComments from "./VideoComments";
 import VideoDescription from "./VideoDescription";
