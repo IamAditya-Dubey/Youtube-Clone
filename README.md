@@ -3,5 +3,5 @@
 ## Features
 
 - All Videos of YouTube are fetched with API
-- This CLone is Fully functional
+- This Clone is Fully functional
 - I am going to Add Video Playing feature and Search feature also

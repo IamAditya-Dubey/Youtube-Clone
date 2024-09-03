@@ -29,7 +29,7 @@ function Header() {
           }
 
         }}/></div>
-        <img src={Logo} alt="logo" />
+        <a href="/"><img src={Logo} alt="logo" /></a>
       </div>
       <div className={`${css.middleArea}`}>
       <div className={`${css.searchBar}`}>
