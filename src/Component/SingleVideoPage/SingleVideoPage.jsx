@@ -14,7 +14,7 @@ function SingleVideoPage() {
   )
 
   return (
-    <div className={`duration-300 flex py-4 gap-5 justify-center px-3 2xl:px-0 w-100% h-auto ${!asideCollapse ? "ContainerWidth" : "ContainerWidthCollapsed"}`}>
+    <div className={`duration-300 flex flex-wrap py-4 gap-5 justify-center px-3 2xl:px-0 w-100% h-auto ${!asideCollapse ? "ContainerWidth" : "ContainerWidthCollapsed"}`}>
       <VideoSection videoId={videoId} />
       <RelSideBar />
     </div>
