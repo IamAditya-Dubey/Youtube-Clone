@@ -3,15 +3,26 @@ import Upload from "../../assets/upload.png"
 import Explore from "../../assets/explore.png"
 import Notification from "../../assets/notification.png"
 import User1 from "../../assets/sub-1.png"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { CiSearch } from "react-icons/ci";
 import { IoMdMic } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import css from "./Header.module.css"
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { SiteContext } from "../../Store/store";
 
 function Header() {
+
+  const navigate = useNavigate();
+  const searchValue = useRef();
+
+  const searchSubmit = (e) => {
+    e.preventDefault();
+    if(searchValue.current.value) {
+    navigate(`/results/${searchValue.current.value.replaceAll(" ", "+")}`);
+    window.scrollTo(0, 0);
+    }
+  }
 
   let {setSidebarOpen, isSidebarOpen, asideCollapse, setAsideCollapse} = useContext(SiteContext)
 
@@ -33,12 +44,12 @@ function Header() {
         <Link to="/"><img src={Logo} alt="logo" /></Link>
       </div>
       <div className={`${css.middleArea}`}>
-      <div className={`${css.searchBar}`}>
-        <input type="text" placeholder="Search"/>
-        <div className="md:py-[7px] md:pr-4 md:pl-6 md:bg-gray-50 md:border-l-[1px] md:border-gray-200 md:rounded-r-3xl">
+      <form className={`${css.searchBar}`} onSubmit={(e) => searchSubmit(e)}>
+        <input type="text" placeholder="Search" ref={searchValue}/>
+        <button className="md:py-[7px] md:pr-4 md:pl-6 md:bg-gray-50 md:border-l-[1px] md:border-gray-200 md:rounded-r-3xl">
           <CiSearch className={css.searchIcon} />
-        </div>
-        </div>
+        </button>
+        </form>
         <div>
         <IoMdMic className={css.micIcon} />
       </div>
