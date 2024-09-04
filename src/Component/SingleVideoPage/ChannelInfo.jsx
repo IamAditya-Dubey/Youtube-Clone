@@ -2,10 +2,19 @@ import { BiLike, BiDislike, BiSolidLike, BiSolidDislike } from "react-icons/bi";
 import { HiDotsHorizontal } from "react-icons/hi";
 import User from "../../assets/sub-1.png"
 import { useState } from "react";
+import { API_KEY } from "../../../secret.js"
 
 export default function ChannelInfo() {
   const [isLikeClick, setLikeClick] = useState(false);
   const [isDislikeClick, setDislikeClick] = useState(false);
+  const [Channelinfo, setChannelinfo] = useState([]);
+  
+  const getChannelDp = (channelId) => {
+     fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&key=${API_KEY}`)
+   .then((res) => res.json())
+   .then((data) => setChannelinfo(data.items))
+  }
+  
   return (
     <>
     <div id="channel-info-and-like-area" className="flex items-center justify-between flex-wrap">
