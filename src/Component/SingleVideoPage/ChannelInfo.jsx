@@ -1,28 +1,33 @@
 import { BiLike, BiDislike, BiSolidLike, BiSolidDislike } from "react-icons/bi";
 import { HiDotsHorizontal } from "react-icons/hi";
 import User from "../../assets/sub-1.png"
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { API_KEY } from "../../../secret.js"
+import { SiteContext, valueConverter } from "../../Store/store.jsx"
 
-export default function ChannelInfo() {
+export default function ChannelInfo({channelId, like}) {
   const [isLikeClick, setLikeClick] = useState(false);
   const [isDislikeClick, setDislikeClick] = useState(false);
-  const [Channelinfo, setChannelinfo] = useState([]);
+  const [Channelinfo, setChannelinfo] = useState("");
   
-  const getChannelDp = (channelId) => {
-     fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&key=${API_KEY}`)
+  const getChannel = async (channelsId) => {
+    await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelsId}&key=${API_KEY}`)
    .then((res) => res.json())
-   .then((data) => setChannelinfo(data.items))
+   .then((data) => setChannelinfo(data.items[0]))
   }
+  
+  useEffect(() => {
+    getChannel(channelId)
+  }, [channelId])
   
   return (
     <>
     <div id="channel-info-and-like-area" className="flex items-center justify-between flex-wrap">
           <div id="channel-info-area" className="flex items-center">
-            <img src={User} className="rounded-full !h-[42px] !w-[42px]" alt="channel" />
+            <img src={Channelinfo ? Channelinfo.snippet.thumbnails.default.url : User} className="rounded-full !h-[42px] !w-[42px]" alt="channel" />
             <div className="self-center pl-2">
-              <h3 className="font-sans font-semibold overflow-ellipsis mb-[-2px]">Sur Sarita</h3>
-              <p className="font-sans overflow-ellipsis text-[12px]">398M subscribers</p>
+              <h3 className="font-sans font-semibold overflow-ellipsis mb-[-2px]">{Channelinfo ? Channelinfo.snippet.title : "title"}</h3>
+              <p className="font-sans overflow-ellipsis text-[12px]">{Channelinfo ? valueConverter(Channelinfo.statistics.subscriberCount) : "200"} subscribers</p>
             </div>
             <button className="rounded-3xl ml-4 bg-black py-2 px-4 text-white text-[14px]">Subscribe</button>
           </div>
@@ -31,7 +36,7 @@ export default function ChannelInfo() {
               <button onClick={() => {
                 setDislikeClick(false);
                 setLikeClick((prev)=> !prev);
-              }} className="flex items-center bg-[#00000018] py-2 px-2 text-[16px] pr-4 rounded-tl-[20px] rounded-bl-[20px]">{!isLikeClick ? <BiLike style={{fontSize: "20px"}}/> : <BiSolidLike style={{fontSize: "20px"}}/>} <div>1M</div></button>
+              }} className="flex items-center bg-[#00000018] py-2 px-2 text-[16px] pr-4 rounded-tl-[20px] rounded-bl-[20px]">{!isLikeClick ? <BiLike style={{fontSize: "20px"}}/> : <BiSolidLike style={{fontSize: "20px"}}/>} <div>{ valueConverter(like) }</div></button>
             </div>
             <div id="dislike">
             <button onClick={() => {

@@ -1,6 +1,8 @@
 import { useCallback, useState } from "react"
+import {valueConverter} from "../../Store/store.jsx"
+import moment from "moment"
 
-export default function VideoDescription() {
+export default function VideoDescription({content, view}) {
 
   let [descriptionOpen, setDescriptionOpen] = useState(false);
   
@@ -15,12 +17,10 @@ export default function VideoDescription() {
   return (
     <div className="my-5 p-3 bg-[#00000010] rounded-2xl">
       <div className="views-period text-[14px] font-semibold font-serif pb-1">
-        <span>23M views </span><span className="ml-1"> 3 days ago</span>
+        <span>{view? valueConverter(view) : 600} views </span><span className="ml-1"> {content? moment(content.publishedAt).fromNow(): "1 day ago"}</span>
       </div>
       <div className={`description text-[15px] ${descriptionOpen ? "" : "line-clamp-2"}`}>
-      Welcome to chai aur code, a coding/programming dedicated channel in Hindi language. Now you can learn best of programming concepts with industry standard practical guide in Hindi language.<br /><br />
-      All source code is available at my Github account:<br />
-      https://github.com/hiteshchoudhary
+      {content?content.description : "description"}
       </div>
       <div id="more" className="font-semibold cursor-pointer" onClick={descriptionToggle}>{descriptionOpen ? "Show less" : "...more"}</div>
     </div>
