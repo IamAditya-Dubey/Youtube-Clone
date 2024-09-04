@@ -1,6 +1,6 @@
 import { BiLike, BiDislike, BiSolidLike, BiSolidDislike } from "react-icons/bi";
 import { HiDotsHorizontal } from "react-icons/hi";
-import User from "../../assets/sub-1.png"
+import User from "../../assets/user.jpg"
 import { useState, useEffect, useContext } from "react";
 import { API_KEY } from "../../../secret.js"
 import { SiteContext, valueConverter } from "../../Store/store.jsx"

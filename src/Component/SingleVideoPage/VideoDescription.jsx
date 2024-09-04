@@ -14,13 +14,22 @@ export default function VideoDescription({content, view}) {
     }
   }, [descriptionOpen])
 
+    let lines = content  ? content.description.split("\n") : ["description", "here"];
+
   return (
     <div className="my-5 p-3 bg-[#00000010] rounded-2xl">
       <div className="views-period text-[14px] font-semibold font-serif pb-1">
-        <span>{view? valueConverter(view) : 600} views </span><span className="ml-1"> {content? moment(content.publishedAt).fromNow(): "1 day ago"}</span>
+        <span>{view? valueConverter(view) : 600} views </span><span className="ml-1"> {content ? moment(content.publishedAt).fromNow(): "1 day ago"}</span>
       </div>
       <div className={`description text-[15px] ${descriptionOpen ? "" : "line-clamp-2"}`}>
-      {content?content.description : "description"}
+      {
+      lines.map((line, index) => (
+        <div key={index}>
+          {line}
+          <br />
+        </div>
+      ))
+      }
       </div>
       <div id="more" className="font-semibold cursor-pointer" onClick={descriptionToggle}>{descriptionOpen ? "Show less" : "...more"}</div>
     </div>
