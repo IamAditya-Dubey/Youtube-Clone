@@ -7,12 +7,13 @@ import {API_KEY} from "../../../secret.js"
 
 function SingleVideoPage() {
   let {videoId} = useParams()
-  let {asideCollapse, setAsideCollapse} = useContext(SiteContext);
+  let {asideCollapse, setAsideCollapse, searchValue} = useContext(SiteContext);
   const [videoData, setVideoData] = useState("");
 
   useEffect(()=> {
     setAsideCollapse(true)
     window.scrollTo(0, 0)
+    searchValue.current.value = ""
   },
     []
   )

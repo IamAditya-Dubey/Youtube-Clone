@@ -9,7 +9,7 @@ import { CiSearch } from "react-icons/ci";
 import { IoMdMic } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import css from "./Header.module.css"
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect } from "react";
 import { SiteContext } from "../../Store/store";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
@@ -23,7 +23,6 @@ function Header() {
   } = useSpeechRecognition();
 
   const navigate = useNavigate();
-  const searchValue = useRef();
 
   const searchSubmit = (e) => {
     e.preventDefault();
@@ -33,19 +32,35 @@ function Header() {
     }
   }
 
-  let {setSidebarOpen, isSidebarOpen, asideCollapse, setAsideCollapse} = useContext(SiteContext)
+  let {setSidebarOpen, isSidebarOpen, asideCollapse, setAsideCollapse, searchValue} = useContext(SiteContext)
+
+  useEffect(() => {
+    if(transcript){searchValue.current.value = transcript;}
+  }, [transcript])
 
   const micListen = () => {
+    resetTranscript();
     if(!browserSupportsSpeechRecognition) {
       alert("Browser doesn't support speech recognition")
     } else if(listening) {
-      resetTranscript();
-      searchValue.current.value = transcript;
       SpeechRecognition.stopListening();
-      navigate(`/results/${searchValue.current.value.replaceAll(" ", "+")}`);
-    window.scrollTo(0, 0);
+      resetTranscript();
+        if(searchValue.current.value){
+          navigate(`/results/${searchValue.current.value.replaceAll(" ", "+")}`);
+          window.scrollTo(0, 0);}
     } else if(!listening) {
       SpeechRecognition.startListening();
+        let searchTimer = setTimeout(()=>{
+          if(searchValue.current.value){
+          navigate(`/results/${searchValue.current.value.replaceAll(" ", "+")}`);
+          window.scrollTo(0, 0);
+          resetTranscript();
+        } else {
+            SpeechRecognition.stopListening();
+            resetTranscript();
+          }
+          clearTimeout(searchTimer);
+        }, 5000)
     }
   }
 
@@ -73,7 +88,7 @@ function Header() {
           <CiSearch className={css.searchIcon} />
         </button>
         </form>
-        <div onClick={() => micListen()}>
+        <div onClick={micListen}>
         <IoMdMic className={css.micIcon} style={{color: listening ? "red" : ""}} />
       </div>
       </div>

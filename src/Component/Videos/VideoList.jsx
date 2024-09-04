@@ -7,11 +7,13 @@ import { API_KEY } from "../../../secret"
 import FetchLoader from "../FetchLoader/FetchLoader"
 
 function VideoList() {
-  let {asideCollapse, setAsideCollapse, categoryId, setFeedData, feedData} = useContext(SiteContext);
+  let {asideCollapse, setAsideCollapse, categoryId, setFeedData, feedData, searchValue} = useContext(SiteContext);
   let [isFetching, setIsFetching] = useState(false);
 
   useEffect(()=> {
-    setAsideCollapse(false)},
+    setAsideCollapse(false);
+    searchValue.current.value = ""
+  },
     []
   )
 

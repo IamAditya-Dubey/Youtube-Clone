@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useRef, useState } from "react";
 
 
 export const SiteContext = createContext({
@@ -10,7 +10,8 @@ export default function SiteContextProvider({children}) {
   let [asideCollapse, setAsideCollapse] = useState(true)
   let [categoryId, setCategoryId] = useState(0)
   let [feedData, setFeedData] = useState([])
-  return <SiteContext.Provider value={{isSidebarOpen, setSidebarOpen, asideCollapse, setAsideCollapse, categoryId, setCategoryId, feedData, setFeedData}}>{children}</SiteContext.Provider>
+  const searchValue = useRef();
+  return <SiteContext.Provider value={{isSidebarOpen, setSidebarOpen, asideCollapse, setAsideCollapse, categoryId, setCategoryId, feedData, setFeedData, searchValue}}>{children}</SiteContext.Provider>
 }
 
 export const valueConverter = (value) => {
