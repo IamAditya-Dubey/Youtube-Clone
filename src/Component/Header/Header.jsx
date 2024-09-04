@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime'
 import Logo from "../../assets/logo.png";
 import Upload from "../../assets/upload.png"
 import Explore from "../../assets/explore.png"
@@ -8,10 +9,18 @@ import { CiSearch } from "react-icons/ci";
 import { IoMdMic } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import css from "./Header.module.css"
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { SiteContext } from "../../Store/store";
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 function Header() {
+
+  const {
+    transcript,
+    listening,
+    resetTranscript ,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
 
   const navigate = useNavigate();
   const searchValue = useRef();
@@ -25,6 +34,20 @@ function Header() {
   }
 
   let {setSidebarOpen, isSidebarOpen, asideCollapse, setAsideCollapse} = useContext(SiteContext)
+
+  const micListen = () => {
+    if(!browserSupportsSpeechRecognition) {
+      alert("Browser doesn't support speech recognition")
+    } else if(listening) {
+      resetTranscript();
+      searchValue.current.value = transcript;
+      SpeechRecognition.stopListening();
+      navigate(`/results/${searchValue.current.value.replaceAll(" ", "+")}`);
+    window.scrollTo(0, 0);
+    } else if(!listening) {
+      SpeechRecognition.startListening();
+    }
+  }
 
   return (
     <nav id={`${css.navigation}`}>
@@ -50,8 +73,8 @@ function Header() {
           <CiSearch className={css.searchIcon} />
         </button>
         </form>
-        <div>
-        <IoMdMic className={css.micIcon} />
+        <div onClick={() => micListen()}>
+        <IoMdMic className={css.micIcon} style={{color: listening ? "red" : ""}} />
       </div>
       </div>
       <div className={`${css.rightArea}`}>

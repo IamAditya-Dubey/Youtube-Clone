@@ -34,11 +34,11 @@ function Sidebar() {
       <div className={css.menuIcon}><SiYoutubeshorts /></div>
       <div className={css.menuName}>Shorts</div>
       </li></Link>
-      <Link to="/"><li className={`${css.menuList} ${(categoryId===40) ? "active" : ""}`} onClick={() => {
-        setCategoryId(40)
+      <Link to="/"><li className={`${css.menuList} ${(categoryId===20) ? "active" : ""}`} onClick={() => {
+        setCategoryId(20)
       }}>
-      <div className={css.menuIcon}><BsFire /></div>
-      <div className={css.menuName}>Trending</div>
+      <div className={css.menuIcon}><IoGameController /></div>
+      <div className={css.menuName}>Gaming</div>
       </li></Link>
     </ul>
     <hr />
@@ -61,12 +61,6 @@ function Sidebar() {
       }}>
       <div className={css.menuIcon}><FaClapperboard /></div>
       <div className={css.menuName}>Movies</div>
-      </li></Link>
-      <Link to="/"><li className={`${css.menuList} ${(categoryId===20) ? "active" : ""}`} onClick={() => {
-        setCategoryId(20)
-      }}>
-      <div className={css.menuIcon}><IoGameController /></div>
-      <div className={css.menuName}>Gaming</div>
       </li></Link>
       <Link to="/"><li className={`${css.menuList} ${(categoryId===25) ? "active" : ""}`} onClick={() => {
         setCategoryId(25)
