@@ -1,14 +1,15 @@
 import { BiLike, BiDislike, BiSolidLike, BiSolidDislike } from "react-icons/bi";
 import { HiDotsHorizontal } from "react-icons/hi";
 import User from "../../assets/user.jpg"
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { API_KEY } from "../../../secret.js"
-import { SiteContext, valueConverter } from "../../Store/store.jsx"
+import { valueConverter } from "../../Store/store.jsx"
 
 export default function ChannelInfo({channelId, like}) {
   const [isLikeClick, setLikeClick] = useState(false);
   const [isDislikeClick, setDislikeClick] = useState(false);
   const [Channelinfo, setChannelinfo] = useState("");
+  const [isSubscribed, setSubscribed] = useState(false);
   
   const getChannel = async (channelsId) => {
     await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelsId}&key=${API_KEY}`)
@@ -29,7 +30,7 @@ export default function ChannelInfo({channelId, like}) {
               <h3 className="font-sans font-semibold overflow-ellipsis mb-[-2px]">{Channelinfo ? Channelinfo.snippet.title : "title"}</h3>
               <p className="font-sans overflow-ellipsis text-[12px]">{Channelinfo ? valueConverter(Channelinfo.statistics.subscriberCount) : "200"} subscribers</p>
             </div>
-            <button className="rounded-3xl ml-4 bg-black py-2 px-4 text-white text-[14px]">Subscribe</button>
+            <button onClick={() => setSubscribed(prev => !prev)} style={isSubscribed ? {backgroundColor: "rgba(0, 0, 0, 0.1)", color: "black", border: "1px solid rgba(0, 0, 0, 0.12)"} : {backgroundColor: "black", color: "white"}} className="rounded-3xl ml-4 py-2 px-4 text-[14px]">{isSubscribed ? "Subscribed" : "Subscribe"}</button>
           </div>
           <div id="like-area" className="flex items-center">
             <div id="like">

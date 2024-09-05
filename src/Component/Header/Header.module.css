@@ -24,7 +24,8 @@
 }
 
 .logoArea img {
-  height: 21px !important;
+  height: 23.5px !important;
+  min-width: 112px;
 }
 
 .middleArea {

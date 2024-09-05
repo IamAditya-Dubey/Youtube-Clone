@@ -22,11 +22,11 @@ function Cloud() {
     <Link to="/"><div className={`px-4 py-1 bg-black bg-opacity-10 rounded-[8px] cursor-pointer ${(categoryId===20) ? "cloud-active" : ""}`} onClick={() => {
         setCategoryId(20)
       }}>Gaming</div></Link>
-    <Link to="/"><div className={`px-4 py-1 bg-black bg-opacity-10 rounded-[8px] cursor-pointer ${(categoryId===22) ? "cloud-active" : ""}`} onClick={() => {
-        setCategoryId(22)
+    <Link to="/"><div className={`px-4 py-1 bg-black bg-opacity-10 rounded-[8px] cursor-pointer ${(categoryId===29) ? "cloud-active" : ""}`} onClick={() => {
+        setCategoryId(29)
       }}>Beauty</div></Link>
-    <Link to="/"><div className={`px-4 py-1 bg-black bg-opacity-10 rounded-[8px] cursor-pointer ${(categoryId===25) ? "cloud-active" : ""}`} onClick={() => {
-        setCategoryId(25)
+    <Link to="/"><div className={`px-4 py-1 bg-black bg-opacity-10 rounded-[8px] cursor-pointer ${(categoryId===39) ? "cloud-active" : ""}`} onClick={() => {
+        setCategoryId(39)
       }}>Online Courses</div></Link>
     <Link to="/"><div className={`px-4 py-1 bg-black bg-opacity-10 rounded-[8px] cursor-pointer ${(categoryId===33) ? "cloud-active" : ""}`} onClick={() => {
         setCategoryId(33)

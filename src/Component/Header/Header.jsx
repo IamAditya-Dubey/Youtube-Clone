@@ -12,6 +12,8 @@ import css from "./Header.module.css"
 import { useContext, useEffect } from "react";
 import { SiteContext } from "../../Store/store";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import micOn from "../../assets/mic-on.mp3"
+import micOff from "../../assets/mic-off.mp3"
 
 function Header() {
 
@@ -43,12 +45,15 @@ function Header() {
     if(!browserSupportsSpeechRecognition) {
       alert("Browser doesn't support speech recognition")
     } else if(listening) {
+      new Audio(micOff).play();
       SpeechRecognition.stopListening();
       resetTranscript();
         if(searchValue.current.value){
+          new Audio(micOff).play();
           navigate(`/results/${searchValue.current.value.replaceAll(" ", "+")}`);
           window.scrollTo(0, 0);}
     } else if(!listening) {
+      new Audio(micOn).play();
       SpeechRecognition.startListening();
         let searchTimer = setTimeout(()=>{
           if(searchValue.current.value){

@@ -20,7 +20,7 @@ function RelSideBar({catId}) {
     <div className="flex-row w-[90%] md:w-[35%] 2xl:max-w-[20%] md:mt-0 mt-[95px]">
       {relVideo && !isFetching && relVideo.map((video) => <VideoType2 key={video.id} video={video} />)}
         {relVideo && isFetching && <FetchLoader />}
-        {!relVideo && <center><h2>Nothing to show...</h2></center>}
+        {!relVideo && <FetchLoader />}
     </div>
   )
 }

@@ -19,7 +19,7 @@ function App() {
         <Sidebar></Sidebar>
         <Outlet />
       </div>
-      {listening && <div id="voiceContainer" className="block md:hidden w-[80vw] h-[60vh] bg-[#f7f7f7] shadow-2xl rounded-lg z-[9999] fixed top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%]">
+      {listening && <div id="voiceContainer" className="w-[80vw] h-[60vh] bg-[#f7f7f7] shadow-2xl rounded-lg z-[9999] fixed top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] flex justify-center items-center text-2xl">
         {transcript}
       </div>}
     </SiteContextProvider>
