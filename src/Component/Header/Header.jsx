@@ -72,7 +72,7 @@ function Header() {
   }
 
   return (
-    <nav id={css.navigation} className={isSearchMob ? "!p-0" : ""}>
+    <nav id={css.navigation} className={isSearchMob ? "!p-0 md:!py-[10px] md:!px-[20px]" : ""}>
       <div className={`${css.logoArea} ${isSearchMob ? "gap-[5px] md:gap-[25px]" : "gap-[25px]"}`}>
         <div className={`${css.menuIcon} ${isSearchMob ? "md:block hidden" : ""}`}><RxHamburgerMenu style={{fontSize: "25px"}} onClick={() => {
           if(isSidebarOpen) {
